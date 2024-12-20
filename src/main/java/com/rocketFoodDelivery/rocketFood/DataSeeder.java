@@ -1,5 +1,5 @@
 // package com.rocketFoodDelivery.rocketFood;
-
+//
 // import com.github.javafaker.Faker;
 // import com.rocketFoodDelivery.rocketFood.models.*;
 // import com.rocketFoodDelivery.rocketFood.repository.*;
@@ -7,17 +7,17 @@
 // import jakarta.annotation.PostConstruct;
 // import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.stereotype.Component;
-
+//
 // import java.util.Optional;
 // import java.util.ArrayList;
 // import java.util.Arrays;
 // import java.util.List;
 // import java.util.Random;
 // import java.util.concurrent.ThreadLocalRandom;
-
+//
 // @Component
 // public class DataSeeder {
-
+//
 //     private final UserRepository userRepository;
 //     private final RestaurantRepository restaurantRepository;
 //     private final ProductOrderRepository productOrderRepository;
@@ -30,7 +30,7 @@
 //     private final CourierStatusRepository courierStatusRepository;
 //     private final CourierRepository courierRepository;
 //     UserService userService;
-
+//
 //     @Autowired
 //     public DataSeeder(UserRepository userRepository,
 //             RestaurantRepository restaurantRepository,
@@ -54,12 +54,12 @@
 //         this.courierStatusRepository = courierStatusRepository;
 //         this.courierRepository = courierRepository;
 //     }
-
+//
 //     Faker faker = new Faker();
-
+//
 //     @PostConstruct
 //     public void seedData() {
-
+//
 //         seedUsers();
 //         seedAddresses();
 //         seedRestaurants();
@@ -71,7 +71,7 @@
 //         seedCourierStatuses();
 //         SeedCourier();
 //     }
-
+//
 //     private void seedUsers() {
 //         List<UserEntity> users = new ArrayList<>();
 //         for (int i = 0; i < 20; i++) {
@@ -84,7 +84,7 @@
 //         }
 //         userRepository.saveAll(users);
 //     }
-
+//
 //     private void seedAddresses() {
 //         List<Address> addresses = new ArrayList<>();
 //         for (int i = 0; i < 20; i++) {
@@ -97,17 +97,17 @@
 //         }
 //         addressRepository.saveAll(addresses);
 //     }
-
+//
 //     private void seedRestaurants() {
 //         List<Restaurant> restaurants = new ArrayList<>();
 //         List<UserEntity> users = userRepository.findAll();
 //         List<Address> addresses = addressRepository.findAll();
-
+//
 //         // Loop through the users and addresses to create restaurants
 //         for (int i = 0; i < 8; i++) {
 //             UserEntity user = users.get(i + 1);
 //             Address address = addresses.get(i + 1);
-
+//
 //             // Check if a restaurant with the same user and address already exists
 //             Optional<Restaurant> existingRestaurant = restaurantRepository.findByUserEntityAndAddress(user, address);
 //             if (existingRestaurant.isEmpty()) {
@@ -124,7 +124,7 @@
 //         }
 //         restaurantRepository.saveAll(restaurants);
 //     }
-
+//
 //     private void seedProducts() {
 //         List<Product> products = new ArrayList<>();
 //         List<Restaurant> restaurants = restaurantRepository.findAll();
@@ -143,7 +143,7 @@
 //         }
 //         productRepository.saveAll(products);
 //     }
-
+//
 //     private void seedOrderStatuses() {
 //         List<String> orderStatuses = Arrays.asList("pending", "in progress", "delivered");
 //         List<OrderStatus> orderStatusList = new ArrayList<>();
@@ -155,7 +155,7 @@
 //         }
 //         orderStatusRepository.saveAll(orderStatusList);
 //     }
-
+//
 //     private void seedOrdersAndProductOrders() {
 //         Random random = new Random();
 //         List<Order> orders = new ArrayList<>();
@@ -198,45 +198,45 @@
 //             }
 //         }
 //     }
-
+//
 //     public void seedEmployees() {
 //         List<Address> addresses = addressRepository.findAll();
-
+//
 //         UserEntity erica = new UserEntity();
 //         erica.setEmail("erica.ger@gmail.com");
 //         erica.setName("Erica Ger");
 //         erica.setPassword("password");
-
+//
 //         // Check if the user with this email already exists
 //         Optional<UserEntity> existingUser = userRepository.findByEmail(erica.getEmail());
 //         if (existingUser.isEmpty()) {
 //             userRepository.save(erica);
-
+//
 //             Address ericaAddress = new Address();
 //             ericaAddress.setStreetAddress("123 CodeBoxx Boulevard");
 //             ericaAddress.setCity("Montreal");
 //             ericaAddress.setPostalCode("H4G52Z");
 //             addressRepository.save(ericaAddress);
-
+//
 //             Employee ericaEmployee = new Employee();
 //             ericaEmployee.setUserEntity(erica);
 //             ericaEmployee.setAddress(ericaAddress);
 //             ericaEmployee.setEmail(faker.internet().emailAddress());
 //             ericaEmployee.setPhone("000000");
-
+//
 //             // Check if the employee with this user ID already exists
 //             Optional<Employee> existingEmployee = employeeRepository.findByUserEntityId(erica.getId());
 //             if (existingEmployee.isEmpty()) {
 //                 employeeRepository.save(ericaEmployee);
 //             }
 //         }
-
+//
 //         List<Employee> employees = new ArrayList<>();
 //         List<UserEntity> users = userRepository.findAll();
 //         for (int i = 0; i < 2; i++) {
 //             UserEntity user = users.get(i);
 //             Address address = addresses.get(i + 1);
-
+//
 //             // Check if the employee with this user ID already exists
 //             Optional<Employee> existingEmployee = employeeRepository.findByUserEntityId(user.getId());
 //             if (existingEmployee.isEmpty()) {
@@ -251,24 +251,24 @@
 //         }
 //         employeeRepository.saveAll(employees);
 //     }
-
+//
 //     private void seedCustomers() {
 //         List<Customer> customers = new ArrayList<>();
 //         List<UserEntity> users = userRepository.findAll();
 //         List<Address> addresses = addressRepository.findAll();
-
+//
 //         for (int i = 0; i < 10; i++) {
 //             // Ensure we don't exceed the available number of users
 //             if (i + 1 >= users.size()) {
 //                 break;
 //             }
-
+//
 //             UserEntity user = users.get(i + 1);
 //             Address address = addresses.get(ThreadLocalRandom.current().nextInt(addresses.size()));
-
+//
 //             // Generate a unique email address for the customer
 //             String uniqueEmail = "customer" + i + "_" + faker.internet().emailAddress();
-
+//
 //             // Check if a customer with the same user already exists
 //             if (customerRepository.findByUserEntity(user).isEmpty()) {
 //                 Customer customer = Customer.builder()
@@ -286,7 +286,7 @@
 //         }
 //         customerRepository.saveAll(customers);
 //     }
-
+//
 //     private void seedCourierStatuses() {
 //         List<CourierStatus> courierStatuses = new ArrayList<>();
 //         List<String> statuses = Arrays.asList("free", "busy", "full", "offline");
@@ -298,18 +298,18 @@
 //         }
 //         courierStatusRepository.saveAll(courierStatuses);
 //     }
-
+//
 //     private void SeedCourier() {
 //         List<Courier> couriers = new ArrayList<>();
 //         List<CourierStatus> courierStatuses = courierStatusRepository.findAll();
 //         List<Address> addresses = addressRepository.findAll();
 //         List<UserEntity> users = userRepository.findAll();
-
+//
 //         for (int i = 0; i < 8; i++) {
 //             Random random = new Random();
 //             UserEntity user = users.get(i);
 //             Address address = addresses.get(i);
-
+//
 //             // Check if a courier with the same user already exists
 //             if (courierRepository.findByUserEntityId(user.getId()).isEmpty()) {
 //                 Courier courier = Courier.builder()
@@ -327,5 +327,5 @@
 //         }
 //         courierRepository.saveAll(couriers);
 //     }
-
+//
 // }
